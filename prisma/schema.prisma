@@ -1,24 +1,15 @@
 generator js {
   provider        = "prisma-client-js"
-  previewFeatures = ["fullTextIndex", "extendedIndexes", "mongoDb"]
-}
-
-//--------------------------------------------------------------------------------------------------//
-
-generator test {
-  provider   = "Test-Provider"
-  createCRUD = "test"
+  previewFeatures = ["fullTextIndex", "extendedIndexes"]
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = "mongodb://"
+  provider = "postgresql"
+  url      = "postgresql://"
 }
 
 model Post {
-  id      String @id @map("_id") @db.ObjectId
+  id      String @id
   title   String
   content String
-
-  @@fulltext([title(sort: Desc), content])
 }
